@@ -1,171 +1,121 @@
-# 💰 Expense Tracker Application
+# Expense Tracker Application
 
-A premium, modern, and feature-rich full-stack application designed to help users track their personal finances, manage budgets, analyze spending habits with interactive charts, and export financial reports. Built using the MERN stack (MongoDB, Express, React, Node.js).
-
----
-
-## 🚀 Features
-
-### 💻 Frontend
-- **Interactive Dashboard**: Modern user interface offering a quick view of total income, expenses, set budget, and current balance with glassmorphic elements.
-- **Rich Analytics**: Visual representations of spending distributions using custom charts (Bar, Area, Pie) powered by **Recharts**.
-- **Transaction Manager**: Advanced transactions table with pagination, multi-column search, and filtering by category, type, and date range.
-- **Custom Category Manager**: Personalize financial tracking by creating custom categories, complete with custom icons (emojis) and colors.
-- **Exportable Reports**: Generate and download professional financial statements in **PDF** (via jsPDF) and **Excel/CSV** (via SheetJS) formats.
-- **Responsive Layout**: Designed with **Tailwind CSS** and animated with **Framer Motion** for a smooth, high-fidelity experience across desktop and mobile screens.
-
-### ⚙️ Backend
-- **Secure Authentication**: Traditional credentials authentication using **JWT** (JSON Web Tokens) and password hashing with **bcryptjs**.
-- **Google OAuth 2.0 Integration**: Quick sign-in / registration using Google accounts via **Passport.js**.
-- **Robust API Design**: RESTful design patterns using Express.js with custom middlewares for cookie parsing, error handling, session management, and route protection.
-- **MongoDB Database**: Scalable data models with indexing for efficient querying of transactions and user preferences.
-- **Health Checks & Validation**: Standard Express validators and health checks.
+A comprehensive, full-stack personal finance and budget management solution. This application enables users to track financial transactions, manage monthly budgets, analyze spending habits through interactive visualizations, and export financial data for reporting.
 
 ---
 
-## 🛠️ Tech Stack
+## 1. Project Overview
 
-| Layer | Technologies Used |
-| :--- | :--- |
-| **Frontend** | React 18, Vite, Redux Toolkit, Tailwind CSS, Framer Motion, Recharts, Axios, jsPDF, SheetJS (xlsx), React Icons |
-| **Backend** | Node.js, Express.js, Passport.js, JWT, bcryptjs, cookie-parser, express-session |
-| **Database** | MongoDB, Mongoose ODM |
-| **Deployment**| Frontend pre-configured for Vercel, Backend runs as a Node service |
+The Expense Tracker Application is designed to streamline personal wealth management. By offering real-time visibility into cash flow, the platform empowers users to make informed financial decisions. The system is split into an interactive, state-managed frontend client and a secure, RESTful backend service handling authentication, business logic, and database persistence.
 
 ---
 
-## 📂 Project Structure
+## 2. Project Scope
 
-```text
-expense-tracker/
-├── Backend/
-│   ├── config/             # DB connection & Passport strategies
-│   ├── controllers/        # Request handling and controller functions
-│   ├── middlewares/        # Authentication, error handling, and session verification
-│   ├── models/             # Mongoose schemas (User, Transaction)
-│   ├── routes/             # REST API endpoint definitions
-│   ├── utils/              # Helper functions and utilities
-│   ├── .env.example        # Environment template file
-│   ├── server.js           # Express application entrypoint
-│   └── package.json        # Node.js backend dependencies and scripts
-│
-├── Frontend/
-│   ├── public/             # Static public assets
-│   ├── src/
-│   │   ├── Components/     # React pages & components (Dashboard, Reports, Settings, etc.)
-│   │   ├── Store/          # Redux toolkit store configuration & state slices
-│   │   ├── api/            # Axios API config
-│   │   ├── main.jsx        # React DOM mounting entry point
-│   │   └── index.css       # Tailwind directives & custom CSS
-│   ├── .env.example        # Environment template file
-│   ├── vercel.json         # Vercel SPA routing configuration
-│   └── package.json        # Node.js frontend dependencies and scripts
-└── README.md               # Documentation (This file)
-```
+### In Scope
+* **User Authentication & Identity Management**: Secure authentication via traditional email/password credentials or Google Federated Identity (OAuth 2.0).
+* **Budget Tracking & Enforcement**: Setting monthly budgets with real-time tracking of remaining thresholds.
+* **Transaction Lifecycle Management**: Logging, editing, categorizing, and deleting income and expense transactions.
+* **Advanced Analytics**: Interactive financial modeling using bar, area, and pie charts to identify spending patterns.
+* **Data Portability**: Exporting financial reports directly to PDF and Excel/CSV formats.
+* **User-Defined Categorization**: Custom category creation with personalized colors and representations to match individual financial goals.
+
+### Out of Scope / Future Roadmap
+* **Bank Feed Integration**: Automated importing of transactions from bank accounts via Open Banking APIs (e.g., Plaid).
+* **Multi-Currency Conversion**: Automatic calculation and adjustment based on real-time exchange rates.
+* **Receipt Parsing (OCR)**: Automatic entry creation through machine learning analysis of uploaded receipt images.
 
 ---
 
-## 🏁 Getting Started
+## 3. Core Functionalities
+
+### User Identity and Access Management
+* **Dual-Channel Authentication**: Supports standard email-password accounts (secured with bcrypt hashing) and Google OAuth 2.0.
+* **Session Management**: Implements secure cookie-based session state and JSON Web Tokens (JWT) for secure API communication.
+* **Authorized Access Controls**: Ensures data isolation so users can only access their own profiles, transactions, and categories.
+
+### Financial Analytics and Dashboard
+* **Consolidated KPI Cards**: High-level summaries displaying total income, total expenses, defined monthly budget, and net balance.
+* **Interactive Charts**: Rendered through Recharts, including trend charts over time and category-wise percentage distribution graphs.
+* **Dynamic Budget Progress indicators**: Visual status bars highlighting current spending against the set budget limit.
+
+### Transaction Ledger
+* **Detailed Record Ledger**: tabular view displaying all transactions with custom sorting, date range filtering, search capabilities, and pagination.
+* **Dynamic Transaction Posting**: Modals to log new transactions containing fields for amount, type (Income/Expense), date, category, and descriptive notes.
+
+### Custom Classification and Budgeting
+* **Category Configuration**: User interface for organizing expenses by creating, editing, and deleting categories with custom visual highlights.
+* **Profile Settings**: Configuration of localized currency indicators and monthly budget limits.
+
+### Export Capabilities
+* **PDF Statements**: Generates clean, client-side PDF document structures with auto-formatted tables.
+* **Excel & CSV Spreadsheets**: Packages records into spreadsheet sheets using standard Office Open XML formatting.
+
+---
+
+## 4. Technology Stack
+
+### Frontend Client
+* **React**: Core library for user interface components.
+* **Redux Toolkit**: Centralized state management for authentication states, transaction lists, and system settings.
+* **Tailwind CSS**: Utility-first CSS framework used to build a polished, responsive, and modern user interface.
+* **Framer Motion**: Library utilized for fluid UI transitions and micro-animations.
+* **Recharts**: D3-based charting library used for data visualization.
+* **jsPDF & SheetJS (xlsx)**: Tools used for client-side document generation and data export.
+
+### Backend Services
+* **Node.js & Express.js**: Runtime environment and web framework responsible for serving API endpoints.
+* **Passport.js**: Authentication middleware configured with Local and Google OAuth 2.0 strategies.
+* **JSON Web Tokens (JWT)**: Secure mechanism for transmitting user authorization claims between frontend and backend.
+
+### Database Layer
+* **MongoDB**: NoSQL database for document storage.
+* **Mongoose**: Object Data Modeling (ODM) library used to structure database schemas, enforce validation rules, and optimize queries through indexes.
+
+---
+
+## 5. System Requirements & Environment Configuration
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) (v16+ recommended)
-- [MongoDB](https://www.mongodb.com/) (Local installation or MongoDB Atlas cluster)
+* Node.js (v16.0.0 or higher)
+* MongoDB (v5.0 or higher)
 
-### Installation & Setup
+### Environment Variable Templates
 
-1. **Clone the repository:**
-   ```bash
-   git clone <repository-url>
-   cd expense-tracker
-   ```
+#### Backend Service Config (`Backend/.env`)
+Ensure the following variables are specified in your environment configuration:
+```env
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/expense-tracker
+JWT_SECRET=your_jwt_signing_key
+JWT_EXPIRE=7d
+NODE_ENV=development
+FRONTEND_URL=http://localhost:5173
+```
 
-2. **Backend Setup:**
-   - Navigate to the `Backend` directory:
-     ```bash
-     cd Backend
-     ```
-   - Install dependencies:
-     ```bash
-     npm install
-     ```
-   - Set up environment variables:
-     - Create a `.env` file based on `.env.example`:
-       ```bash
-       cp .env.example .env
-       ```
-     - Open `.env` and fill in your database URI and secrets:
-       ```env
-       PORT=5000
-       MONGODB_URI=mongodb://localhost:27017/expense-tracker
-       JWT_SECRET=your_jwt_secret_key_here
-       JWT_EXPIRE=7d
-       NODE_ENV=development
-       FRONTEND_URL=http://localhost:5173
-       ```
-
-3. **Frontend Setup:**
-   - Open a new terminal and navigate to the `Frontend` directory:
-     ```bash
-     cd Frontend
-     ```
-   - Install dependencies:
-     ```bash
-     npm install
-     ```
-   - Set up environment variables:
-     - Create a `.env` file based on `.env.example`:
-       ```bash
-       cp .env.example .env
-       ```
-     - Configure the API endpoint:
-       ```env
-       VITE_API_URL=http://localhost:5000/api
-       ```
+#### Frontend Client Config (`Frontend/.env`)
+Specify the API URL targeting the active backend service:
+```env
+VITE_API_URL=http://localhost:5000/api
+```
 
 ---
 
-## 🏃 Running the Application
+## 6. Execution Guide
 
-### Running the Backend
-To start the backend in development mode with live reloading (via nodemon):
+### 1. Initialize Backend Service
+Navigate to the server directory, install dependencies, and start the development server:
 ```bash
 cd Backend
+npm install
 npm run dev
 ```
-The server will start, connect to MongoDB, and listen on the configured port (default: `5000`).
 
-### Running the Frontend
-To start the frontend development server:
+### 2. Initialize Frontend Client
+Navigate to the client directory, install dependencies, and start the Vite server:
 ```bash
 cd Frontend
+npm install
 npm run dev
 ```
-Open [http://localhost:5173](http://localhost:5173) in your browser to view the application.
-
----
-
-## 🛡️ API Endpoints Summary
-
-### Authentication (`/api/auth`)
-- `POST /api/auth/register` - Create a new user account
-- `POST /api/auth/login` - Authenticate a user and issue cookies
-- `GET /api/auth/logout` - Log out user and clear session cookies
-- `GET /api/auth/me` - Retrieve current logged-in user details
-- `GET /api/auth/google` - Trigger Google OAuth process
-
-### Transactions (`/api/transactions`)
-- `GET /api/transactions` - Retrieve transactions (supports search, sort, filters, pagination)
-- `POST /api/transactions` - Create a new transaction
-- `PUT /api/transactions/:id` - Update an existing transaction
-- `DELETE /api/transactions/:id` - Delete a transaction
-
-### Categories (`/api/categories`)
-- `POST /api/categories` - Create custom categories for a user
-- `DELETE /api/categories/:id` - Delete a custom category
-
-### Users & Settings (`/api/users`)
-- `PUT /api/users/profile` - Update user currency/budget settings
-- `PUT /api/users/complete-profile` - Complete profile setup for OAuth registration
-
-### Health Check (`/api/health`)
-- `GET /api/health` - Check database and server status
+The client application will run locally at [http://localhost:5173](http://localhost:5173) and route API queries to the configured backend.
